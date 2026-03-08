@@ -1,0 +1,33 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    
+    - name: Add server to known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+    
+    - name: Deploy to server
+      run: |
+        echo "🚀 Deploying to server..."
+        scp index.html ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/pension-website/
+        echo "✅ Deployment complete!"
+    
+    - name: Verify deployment
+      run: |
+        echo "🎉 Verifying..."
+        curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" https://yanglaofund.com
