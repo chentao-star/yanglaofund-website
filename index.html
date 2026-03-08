@@ -17,6 +17,43 @@
             min-height: 100vh;
         }
 
+/* 免责声明 */
+        .disclaimer-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            color: white;
+            padding: 12px 0;
+            position: relative;
+            z-index: 101;
+        }
+        
+        .disclaimer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .disclaimer-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .disclaimer-content p {
+            margin: 0;
+            opacity: 0.95;
+        }
+        
+        @media (max-width: 768px) {
+            .disclaimer-content {
+                font-size: 12px;
+                padding: 0 15px;
+            }
+        }
+
         /* 头部样式 */
         .header {
             background: rgba(255, 255, 255, 0.95);
@@ -472,6 +509,13 @@
     </style>
 </head>
 <body>
+    <!-- 免责声明 -->
+    <div class="disclaimer-banner">
+        <div class="disclaimer-content">
+            <span class="disclaimer-icon">⚠️</span>
+            <p>本网站为个人非经营性信息展示平台，非金融持牌机构，不提供任何投资建议，不代销任何金融产品，不涉及任何资金募集行为。所有信息均来源于公开渠道，仅供参考，不构成投资依据。</p>
+        </div>
+    </div>
     <!-- 头部 -->
     <header class="header">
         <div class="header-content">
